@@ -20,8 +20,8 @@ class RegistrationFormType extends AbstractType
         $builder
             ->add('email', EmailType::class, [
                 'constraints'=> [
-                    new NotBlank(message: 'Please enter your email'),
-                    new Email(message: 'Please enter a valid email address')
+                    new NotBlank(message: 'Inserisci la tua email'),
+                    new Email(message: 'Inserisci una email valida')
                 ]
             ])
             ->add('agreeTerms', CheckboxType::class, [
@@ -36,12 +36,12 @@ class RegistrationFormType extends AbstractType
                 'mapped' => false,
                 'attr' => ['autocomplete' => 'new-password'],
                 'constraints' => [
-                    new NotBlank(message: 'Please enter a password.'),
+                    new NotBlank(message: 'Inserisci una password.'),
                     new Length(
                         min:6, 
                         max:16, 
-                        minMessage:'Your password must be at least {{ limit }} characters long', 
-                        maxMessage:'Your password cannot be longer than {{ limit }} characters'
+                        minMessage:'La tua password dovrebbe essere di almeno {{ limit }} caratteri', 
+                        maxMessage:'La tua password non può essere più lunga di {{ limit }} caratteri'
                     ),
                 ],
 
