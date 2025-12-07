@@ -33,7 +33,7 @@ class RegistrationController extends AbstractController
 
             $this->addFlash(
                 'notice',
-                'You registered successfully!'
+                'La registrazione è avvenuta con successo!'
             );
 
             // do anything else you need here, like send an email
