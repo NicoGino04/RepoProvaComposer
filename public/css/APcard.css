@@ -1,0 +1,256 @@
+@import url("https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+:root {
+    --c-text-primary: #282a32;
+    --c-text-secondary: #686b87;
+    --c-text-action: #404089;
+    --c-accent-primary: #434ce8;
+    --c-border-primary: #eff1f6;
+    --c-background-primary: #ffffff;
+    --c-background-secondary: #fdfcff;
+    --c-background-tertiary: #ecf3fe;
+    --c-background-quaternary: #f1f4fd;
+}
+
+body {
+    line-height: 1.5;
+    min-height: 100vh;
+    font-family: "Be Vietnam Pro", sans-serif;
+    background-color: var(--c-background-quaternary);
+    color: var(--c-text-primary);
+}
+
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    column-gap: 1.5rem;
+    row-gap: 1.5rem;
+    @media (min-width: 600px) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    @media (min-width: 1200px) {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.card {
+    /*forma card*/
+    background-color: var(--c-background-secondary);
+    box-shadow: 0 3px 3px 0 rgba(#000, 0.05), 0 5px 15px 0 rgba(#000, 0.05);
+    border-radius: 15px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 1.5rem 1.25rem 1rem 1.25rem;
+    div {
+        display: flex;
+        align-items: center;
+        span {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            img {
+                max-width: 85%;
+                max-height: 100%;
+            }
+        }
+        h3 {
+            margin-left: 0.75rem;
+            font-weight: 500;
+        }
+    }
+}
+
+.toggle {
+    /*bottone di spunta*/
+    span {
+        display: block;
+        width: 40px;
+        height: 24px;
+        border-radius: 99em;
+        background-color: var(--c-background-quaternary);
+        box-shadow: inset 1px 1px 1px 0 rgba(#000, 0.05);
+        position: relative;
+        transition: 0.15s ease;
+        &:before {
+            content: "";
+            display: block;
+            position: absolute;
+            left: 3px;
+            top: 3px;
+            height: 18px;
+            width: 18px;
+            background-color: var(--c-background-primary);
+            border-radius: 50%;
+            box-shadow: 0 1px 3px 0 rgba(#000, 0.15);
+            transition: 0.15s ease;
+        }
+    }
+    input {
+        clip: rect(0 0 0 0);
+        clip-path: inset(50%);
+        height: 1px;
+        overflow: hidden;
+        position: absolute;
+        white-space: nowrap;
+        width: 1px;
+        &:checked+span {
+            background-color: var(--c-accent-primary);
+            &:before {
+                transform: translateX(calc(100% - 2px));
+            }
+        }
+        &:focus+span {
+            box-shadow: 0 0 0 4px var(--c-background-tertiary);
+        }
+    }
+}
+
+.card-body {
+    padding: 1rem 1.25rem;
+    font-size: 0.875rem;
+}
+
+.card-footer {
+    margin-top: auto;
+    padding: 1rem 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    border-top: 1px solid var(--c-border-primary);
+    /*riga di divisione tra view integration e la card in se*/
+    a {
+        color: var(--c-text-action);
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 0.875rem;
+    }
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    &>a {
+        display: none;
+    }
+    @media (max-width: 1200px) {
+        justify-content: space-between;
+        &>a {
+            display: inline-flex;
+        }
+    }
+}
+
+.content-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 0rem;
+    /*spazio dall'alto*/
+    margin-top: -1px;
+    /*aggiusto lo spazio verso l'alto*/
+    border-top: none;
+    /*riga che rompeva le palle*/
+}
+
+.content-header-intro {
+    h2 {
+        font-size: 1.25rem;
+        font-weight: 600;
+    }
+    p {
+        color: var(--c-text-secondary);
+        margin-top: 0.25rem;
+        font-size: 0.875rem;
+        margin-bottom: 1rem;
+    }
+}
+
+.content-header-actions {
+    a:first-child {
+        @media (min-width: 800px) {
+            display: none;
+        }
+    }
+}
+
+.content {
+    margin-top: 2rem;
+    display: flex;
+    align-items: flex-start;
+}
+
+.content-panel {
+    display: none;
+    max-width: 280px;
+    width: 25%;
+    padding: 2rem 1rem 2rem 0;
+    margin-right: 3rem;
+    @media (min-width: 800px) {
+        display: block;
+    }
+}
+
+.content-main {
+    /*spazio sopra e sotto della card-grid*/
+    padding-top: 2rem;
+    padding-bottom: 6rem;
+    flex-grow: 1;
+}
+
+
+/*SEZIONE CONTATORE*/
+
+.counter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.counter button {
+    width: 36px;
+    height: 36px;
+    border: 1px solid var(--c-border-primary);
+    background-color: var(--c-background-primary);
+    border-radius: 50%;
+    font-size: 1.25rem;
+    cursor: pointer;
+    transition: 0.15s;
+}
+
+.counter button:hover {
+    background-color: var(--c-background-tertiary);
+}
+
+.counter .count {
+    font-size: 1.25rem;
+    min-width: 30px;
+    text-align: center;
+}
+
+.card-footer .save-btn {
+    margin-top: 10px;
+    padding: 0.5em 1em;
+    border: none;
+    /*background-color: var(--c-accent-primary);*/
+    background-color: #1a4173;
+    color: #fff;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.15s;
+}
+
+.card-footer .save-btn:hover {
+    background-color: #395983;
+}

@@ -1,106 +1,73 @@
-{% extends 'base.html.twig' %}
+{% extends 'base.html.twig' %} {% block title %}Register{% endblock %} {% block stylesheets %}
 
-{% block title %}Register{% endblock %}
+<script src="javascript/mainNavbar.js" defer></script>
 
-{% block stylesheets %}
+<link rel="stylesheet" href="css/registration.css"> {#
+<link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">#} {% endblock %} {% block javascripts %} {{ parent() }}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+{% endblock %} {% block body %}
 
-    <script src="javascript/mainNavbar.js" defer></script>
-
-    <link rel="stylesheet" href="css/registration.css">
-    {#<link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">#}
-
-{% endblock %}
-
-{% block javascripts %}
-    {{ parent() }}
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-{% endblock %}
-
-{% block body %}
-
-    <button id="open-sidebar-button" onclick="openSidebar()" aria-label="open sidebar" aria-expanded="false" aria-controls="navBar">
+<button id="open-sidebar-button" onclick="openSidebar()" aria-label="open sidebar" aria-expanded="false" aria-controls="navBar">
         <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#c9c9c9"><path d="M165.13-254.62q-10.68 0-17.9-7.26-7.23-7.26-7.23-18t7.23-17.86q7.22-7.13 17.9-7.13h629.74q10.68 0 17.9 7.26 7.23 7.26 7.23 18t-7.23 17.87q-7.22 7.12-17.9 7.12H165.13Zm0-200.25q-10.68 0-17.9-7.27-7.23-7.26-7.23-17.99 0-10.74 7.23-17.87 7.22-7.13 17.9-7.13h629.74q10.68 0 17.9 7.27 7.23 7.26 7.23 17.99 0 10.74-7.23 17.87-7.22 7.13-17.9 7.13H165.13Zm0-200.26q-10.68 0-17.9-7.26-7.23-7.26-7.23-18t7.23-17.87q7.22-7.12 17.9-7.12h629.74q10.68 0 17.9 7.26 7.23 7.26 7.23 18t-7.23 17.86q-7.22 7.13-17.9 7.13H165.13Z"/></svg>
     </button>
 
-    <nav id="navBar">
-        <ul>
-            <li><button id="close-sidebar-button" onclick="closeSidebar()" aria-label="close sidebar"><svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#c9c9c9"><path d="m480-444.62-209.69 209.7q-7.23 7.23-17.5 7.42-10.27.19-17.89-7.42-7.61-7.62-7.61-17.7 0-10.07 7.61-17.69L444.62-480l-209.7-209.69q-7.23-7.23-7.42-17.5-.19-10.27 7.42-17.89 7.62-7.61 17.7-7.61 10.07 0 17.69 7.61L480-515.38l209.69-209.7q7.23-7.23 17.5-7.42 10.27-.19 17.89 7.42 7.61 7.62 7.61 17.7 0 10.07-7.61 17.69L515.38-480l209.7 209.69q7.23 7.23 7.42 17.5.19 10.27-7.42 17.89-7.62 7.61-17.7 7.61-10.07 0-17.69-7.61L480-444.62Z"/></svg></button></li>
-            <li class="home_li"><a class="active_link" onclick="menuClosure()" aria-current="page" href="{{ path('app_home') }}">Home</a></li>
-            <li><a href="#">Chi siamo</a></li>
-            <li><a href="#">Supporto</a></li>
-            <li><a class="account_link" href="#">Accedi</a></li>
-        </ul>
-    </nav>
+<nav id="navBar">
+    <ul>
+        <li><button id="close-sidebar-button" onclick="closeSidebar()" aria-label="close sidebar"><svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#c9c9c9"><path d="m480-444.62-209.69 209.7q-7.23 7.23-17.5 7.42-10.27.19-17.89-7.42-7.61-7.62-7.61-17.7 0-10.07 7.61-17.69L444.62-480l-209.7-209.69q-7.23-7.23-7.42-17.5-.19-10.27 7.42-17.89 7.62-7.61 17.7-7.61 10.07 0 17.69 7.61L480-515.38l209.69-209.7q7.23-7.23 17.5-7.42 10.27-.19 17.89 7.42 7.61 7.62 7.61 17.7 0 10.07-7.61 17.69L515.38-480l209.7 209.69q7.23 7.23 7.42 17.5.19 10.27-7.42 17.89-7.62 7.61-17.7 7.61-10.07 0-17.69-7.61L480-444.62Z"/></svg></button></li>
+        <li class="home_li"><a class="active_link" onclick="menuClosure()" aria-current="page" href="{{ path('app_home') }}">Home</a></li>
+        <li><a href="#">Chi siamo</a></li>
+        <li><a href="#">Supporto</a></li>
+        <li><a class="account_link" href="#">Accedi</a></li>
+    </ul>
+</nav>
 
-    <div class="container">
+<div class="container">
 
-            {#{{ form_errors(registrationForm) }} modo classico di prendere errori#} 
-            
-            {{ form_start(registrationForm) }}
 
-                <h1>Registrazione</h1>
-  
-                {{ form_row(registrationForm.email) }}
-                
-                {{ form_row(registrationForm.plainPassword, {label: 'Password'}) }}
 
-                <input type="checkbox" id="chk">
+    {#{{ form_errors(registrationForm) }} modo classico di prendere errori#} {{ form_start(registrationForm) }}
 
-                <script>
-                
-                    const passw = document.getElementById("registration_form_plainPassword");
-                    const chk = document.getElementById("chk");
+    <h1>Registrazione</h1>
 
-                    chk.onchange = function show(e) {
-                        passw.type = chk.checked ? "text" : "password";
-                    };
-                
-                </script>
+    {{ form_row(registrationForm.email) }} {{ form_row(registrationForm.plainPassword) }}
 
-                {{ form_row(registrationForm.agreeTerms) }}
+    <input type="checkbox" id="chk">
 
-                <button id="button" type="submit" class="btn">Registrati</button>
+    <script>
+        const passw = document.getElementById("registration_form_plainPassword");
+        const chk = document.getElementById("chk");
 
-                <p>hai già un account?<a class="loginLink" href="{{ path('app_login') }}">clicca qui per accedere</a></p>
+        chk.onchange = function show(e) {
+            passw.type = chk.checked ? "text" : "password";
+        };
+    </script>
 
-            {{ form_end(registrationForm) }}
+    {{ form_row(registrationForm.agreeTerms) }}
 
-            {% set error_messages = app.flashes('error') %}
-            {% if error_messages is not empty %}
+    <button id="button" type="submit" class="btn">Registrati</button>
 
-            <script>
-                
-                let messages = {{ error_messages|json_encode|raw }};
+    <p>hai già un account?<a class="loginLink" href="{{ path('app_login') }}">clicca qui per accedere</a></p>
 
-                console.log(messages[1]);
+    {{ form_end(registrationForm) }} {% for message in app.flashes('error') %}
 
-                function showNextError() {
-                    if(messages.length === 0) return;
+    <script>
+        Swal.fire({
+            icon: 'error',
+            title: '{{ message }}',
+            confirmButtonColor: '#d33'
+        });
+    </script>
 
-                    let msg = messages.shift();
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Errore',
-                        text: msg,
-                        confirmButtonColor: '#d33'
-                    }).then(() => {
-                        showNextError(); // mostra il successivo
-                    });
-                }
+    {% endfor %}
 
-                showNextError();
-            </script>
-            {% endif %}
-        
+</div>
+
+<footer>
+    <div>
+        Prova footer
     </div>
+</footer>
 
-    <footer>
-        <div>
-            Prova footer
-        </div>
-    </footer>
-
-    <div id="overlay" onclick="closeSidebar()" aria-hidden="true"></div>
-
+<div id="overlay" onclick="closeSidebar()" aria-hidden="true"></div>
 
 {% endblock %}

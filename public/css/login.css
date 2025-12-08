@@ -1,44 +1,53 @@
-
 /*nel seguente caso con il selettore * prendiamo in considerazione TUTTI gli elementi*/
-*{
+
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+
 /* ---- Parte navBar ---- */
 
-#navBar{
+#navBar {
     background-color: #11121a;
     border-bottom: 1px solid #272832;
 }
-#navBar ul{
+
+#navBar ul {
     list-style: none;
     display: flex;
 }
-#navBar .home_li{
+
+#navBar .home_li {
     margin-right: auto;
 }
-#navBar li{
+
+#navBar li {
     display: flex;
 }
-#navBar a{
+
+#navBar a {
     display: flex;
     text-decoration: none;
     color: #c9c9c9;
     padding: 1em 2em;
     transition: background-color 150ms ease;
 }
-#navBar a:hover{
+
+#navBar a:hover {
     background-color: #272832;
 }
-#navBar a.active_link{
+
+#navBar a.active_link {
     border-bottom: 2px solid #c9c9c9;
 }
-#navBar a.account_link{
+
+#navBar a.account_link {
     background-color: rgb(3, 136, 56);
 }
-#open-sidebar-button{
+
+#open-sidebar-button {
     display: none;
     background: none;
     background-color: #11121a;
@@ -48,14 +57,16 @@
     margin-left: auto;
     cursor: pointer;
 }
-#close-sidebar-button{
+
+#close-sidebar-button {
     display: none;
     background: none;
     border: none;
     padding: 1em;
     cursor: pointer;
 }
-#overlay{
+
+#overlay {
     background: rgba(255, 235, 205, 0.5);
     position: fixed;
     inset: 0;
@@ -64,62 +75,72 @@
 }
 
 @media screen and (max-width:700px) {
-    #open-sidebar-button, #close-sidebar-button{
+    #open-sidebar-button,
+    #close-sidebar-button {
         display: block;
     }
-    #navBar{
+    #navBar {
         position: fixed;
         top: 0;
         right: -100%;
         height: 100vh;
-        width: min(15em, 100%); /* fondamentalmente regola quei 15em in base alla percentuale 
+        width: min(15em, 100%);
+        /* fondamentalmente regola quei 15em in base alla percentuale 
         dello schermo che si sta usando al momento */
         z-index: 9999;
         border-left: 1px solid #272832;
         transition: right 300ms ease-out;
     }
-    #navBar.show{
+    #navBar.show {
         right: 0;
     }
     /* Il seguente operatore ~ è detto sibling combinator e non fa altro che applicare 
     tutto quello dettato da #overlay solo a seguito dell'evento di #navBar.show*/
-    #navBar.show ~ #overlay{
+    #navBar.show~#overlay {
         display: block;
         transition: 300ms ease-out;
     }
-    #navBar ul{
+    #navBar ul {
         width: 100%;
         flex-direction: column;
     }
-    #navBar a{
+    #navBar a {
         width: 100%;
         padding-left: 2.5em;
     }
-    #navBar a.active_link{
+    #navBar a.active_link {
         border-bottom: none;
     }
-    #navBar .home_li{
+    #navBar .home_li {
         margin-right: unset;
     }
 }
 
+
 /* ---- Parte body ---- */
 
-body{
+body {
     font-family: 'Bai Jamjuree', sans-serif;
+    min-height: 100vh;
+    min-height: 100dvh;
+    background-color: #222642;
 }
+
+
 /*nel seguente e simili prossimi casi il selettore . selezione tutti gli elementi con 
 class=container*/
-.container{
+
+.container {
     height: 100vh;
     width: 100%;
-    background-color:blanchedalmond;
+    background-color: #222642;
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
 }
-.form_main{
+
+.form_main {
     width: 400px;
     height: 450px;
     display: flex;
@@ -133,7 +154,8 @@ class=container*/
     position: relative;
     overflow: hidden
 }
-.inputContainer{
+
+.inputContainer {
     width: 100%;
     position: relative;
     display: flex;
@@ -141,11 +163,13 @@ class=container*/
     justify-content: center;
     z-index: 2;
 }
-.inputIcon{
+
+.inputIcon {
     position: absolute;
     left: 3px;
 }
-.inputField{
+
+.inputField {
     width: 100%;
     height: 50px;
     background-color: transparent;
@@ -158,19 +182,24 @@ class=container*/
     padding-left: 30px;
     transition: border-bottom .4s;
 }
-.inputField:focus{
+
+.inputField:focus {
     outline: none;
     border-bottom: 2px solid rgb(51, 184, 56);
     transition: border-bottom .4s;
 }
-.inputField::placeholder{
+
+.inputField::placeholder {
     color: rgb(80, 80, 80);
     font-size: 1rem;
     font-weight: 500;
 }
+
+
 /*nel seguente caso il selettore # ci selezione direttamente e solo l'elemento con 
 id=button*/
-#button{
+
+#button {
     z-index: 2;
     position: relative;
     width: 100%;
@@ -178,22 +207,24 @@ id=button*/
     border-radius: 5px;
     background-color: rgb(3, 136, 56);
     height: 45px;
-    color:aliceblue;
+    color: aliceblue;
     font-size: 1.2rem;
     font-weight: 600;
     letter-spacing: 1px;
     cursor: pointer;
     transition: background-color .4s
 }
-#button:hover{
-    background-color: rgb(126,84,255);
+
+#button:hover {
+    background-color: rgb(126, 84, 255);
     transition: background-color .4s;
 }
-.registrationLink{
+
+.registrationLink {
     z-index: 2;
     font-size: .9rem;
     font-weight: 500;
-    color: rgb(44,24,128);
+    color: rgb(44, 24, 128);
     text-decoration: none;
     border-radius: 20px;
 }
