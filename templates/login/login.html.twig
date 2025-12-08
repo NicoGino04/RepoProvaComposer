@@ -1,105 +1,80 @@
-{% extends 'base.html.twig' %}
+{% extends 'base.html.twig' %} {% block title %}Log in!{% endblock %} {% block stylesheets %}
 
-{% block title %}Log in!{% endblock %}
+<script src="javascript/mainNavbar.js" defer></script>
+{# il seguente script serve per gestire i popup moderni a schermo per errori e successi #}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<link rel="stylesheet" href="css/login.css"> {% endblock %} {% block body %} {% for label, messages in app.flashes() %} {% for message in messages %}
+<script>
+    Swal.fire({
+        icon: '{{ label == "notice" ? "success" : "error" }}',
+        title: '{{ message }}',
+        timer: 3000,
+        showConfirmButton: false,
+    });
+</script>
+{% endfor %} {% endfor %}
 
-{% block stylesheets %}
-
-    <script src="javascript/mainNavbar.js" defer></script>
-    {# il seguente script serve per gestire i popup moderni a schermo per errori e 
-    successi #}
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <link rel="stylesheet" href="css/login.css">
-
-{% endblock %}
-
-{% block body %}
-
-    {% for label, messages in app.flashes() %}
-    {% for message in messages %}
-        <script>
-            Swal.fire({
-                icon: '{{ label == "notice" ? "success" : "error" }}',
-                title: '{{ message }}',
-                timer: 3000,
-                showConfirmButton: false,
-            });
-        </script>
-    {% endfor %}
-    {% endfor %}
-
-    <button id="open-sidebar-button" onclick="openSidebar()" aria-label="open sidebar" aria-expanded="false" aria-controls="navBar">
+<button id="open-sidebar-button" onclick="openSidebar()" aria-label="open sidebar" aria-expanded="false" aria-controls="navBar">
         <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#c9c9c9"><path d="M165.13-254.62q-10.68 0-17.9-7.26-7.23-7.26-7.23-18t7.23-17.86q7.22-7.13 17.9-7.13h629.74q10.68 0 17.9 7.26 7.23 7.26 7.23 18t-7.23 17.87q-7.22 7.12-17.9 7.12H165.13Zm0-200.25q-10.68 0-17.9-7.27-7.23-7.26-7.23-17.99 0-10.74 7.23-17.87 7.22-7.13 17.9-7.13h629.74q10.68 0 17.9 7.27 7.23 7.26 7.23 17.99 0 10.74-7.23 17.87-7.22 7.13-17.9 7.13H165.13Zm0-200.26q-10.68 0-17.9-7.26-7.23-7.26-7.23-18t7.23-17.87q7.22-7.12 17.9-7.12h629.74q10.68 0 17.9 7.26 7.23 7.26 7.23 18t-7.23 17.86q-7.22 7.13-17.9 7.13H165.13Z"/></svg>
     </button>
 
-    <nav id="navBar">
-        <ul>
-            <li><button id="close-sidebar-button" onclick="closeSidebar()" aria-label="close sidebar"><svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#c9c9c9"><path d="m480-444.62-209.69 209.7q-7.23 7.23-17.5 7.42-10.27.19-17.89-7.42-7.61-7.62-7.61-17.7 0-10.07 7.61-17.69L444.62-480l-209.7-209.69q-7.23-7.23-7.42-17.5-.19-10.27 7.42-17.89 7.62-7.61 17.7-7.61 10.07 0 17.69 7.61L480-515.38l209.69-209.7q7.23-7.23 17.5-7.42 10.27-.19 17.89 7.42 7.61 7.62 7.61 17.7 0 10.07-7.61 17.69L515.38-480l209.7 209.69q7.23 7.23 7.42 17.5.19 10.27-7.42 17.89-7.62 7.61-17.7 7.61-10.07 0-17.69-7.61L480-444.62Z"/></svg></button></li>
-            <li class="home_li"><a class="active_link" onclick="menuClosure()" aria-current="page" href="{{ path('app_home') }}">Home</a></li>
-            <li><a href="#">Chi siamo</a></li>
-            <li><a href="#">Supporto</a></li>
-            <li><a class="account_link" href="#">Accedi</a></li>
-        </ul>
-    </nav>
+<nav id="navBar">
+    <ul>
+        <li><button id="close-sidebar-button" onclick="closeSidebar()" aria-label="close sidebar"><svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#c9c9c9"><path d="m480-444.62-209.69 209.7q-7.23 7.23-17.5 7.42-10.27.19-17.89-7.42-7.61-7.62-7.61-17.7 0-10.07 7.61-17.69L444.62-480l-209.7-209.69q-7.23-7.23-7.42-17.5-.19-10.27 7.42-17.89 7.62-7.61 17.7-7.61 10.07 0 17.69 7.61L480-515.38l209.69-209.7q7.23-7.23 17.5-7.42 10.27-.19 17.89 7.42 7.61 7.62 7.61 17.7 0 10.07-7.61 17.69L515.38-480l209.7 209.69q7.23 7.23 7.42 17.5.19 10.27-7.42 17.89-7.62 7.61-17.7 7.61-10.07 0-17.69-7.61L480-444.62Z"/></svg></button></li>
+        <li class="home_li"><a class="active_link" onclick="menuClosure()" aria-current="page" href="{{ path('app_home') }}">Home</a></li>
+        <li><a href="#">Chi siamo</a></li>
+        <li><a href="#">Supporto</a></li>
+        <li><a class="account_link" href="#">Accedi</a></li>
+    </ul>
+</nav>
 
-    <div class="container">
-        <form method="post" class="form_main">
-            {% if error %}
-                <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-            {% endif %}
+<div class="container">
+    <form method="post" class="form_main">
+        {% if error %}
+        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+        {% endif %} {% if app.user %}
+        <div class="mb-3">
+            You are logged in as {{ app.user.userIdentifier }}, <a href="{{ logout_path() }}">Logout</a>
+        </div>
+        {% endif %}
 
-            {% if app.user %}
-                <div class="mb-3">
-                    You are logged in as {{ app.user.userIdentifier }}, <a href="{{ logout_path() }}">Logout</a>
-                </div>
-            {% endif %}
+        <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+        {#<label for="username">Email</label>#}
+        <input type="email" value="{{ last_username }}" name="_username" id="username" class="inputField" placeholder="Email" autocomplete="email" required autofocus> {#
+        <label for="password">Password</label>#} {# Vecchia versione <input type="password" name="_password" id="password" class="form-control" autocomplete="current-password" required>#}
 
-            <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-            {#<label for="username">Email</label>#}
-            <input type="email" value="{{ last_username }}" name="_username" id="username" class="inputField" placeholder="Email" autocomplete="email" required autofocus>
-            {#<label for="password">Password</label>#}
-            {# Vecchia versione <input type="password" name="_password" id="password" class="form-control" autocomplete="current-password" required>#}
-            
-            <input type="password" name="_password" id="password" class="inputField" placeholder="Password" autocomplete="current-password" required>
-                
-            <input type="checkbox" id="chk">
+        <input type="password" name="_password" id="password" class="inputField" placeholder="Password" autocomplete="current-password" required><input type="checkbox" id="chk">
 
-                <script>
-                
-                    const passw2 = document.getElementById("password");
-                    const chk2 = document.getElementById("chk");
+        <script>
+            const passw2 = document.getElementById("password");
+            const chk2 = document.getElementById("chk");
 
-                    chk2.onchange = function show(e) {
-                        passw2.type = chk2.checked ? "text" : "password";
-                    };
-                
-                </script>
+            chk2.onchange = function show(e) {
+                passw2.type = chk2.checked ? "text" : "password";
+            };
+        </script>
 
-            <input type="hidden" name="_csrf_token" data-controller="csrf-protection" value="{{ csrf_token('authenticate') }}">
+        <input type="hidden" name="_csrf_token" data-controller="csrf-protection" value="{{ csrf_token('authenticate') }}"> {# Uncomment this section and add a remember_me option below your firewall to activate remember me functionality. See https://symfony.com/doc/current/security/remember_me.html
 
-            {#
-                Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
-                See https://symfony.com/doc/current/security/remember_me.html
+        <div class="checkbox mb-3">
+            <input type="checkbox" name="_remember_me" id="_remember_me">
+            <label for="_remember_me">Remember me</label>
+        </div>
+        #} {#
 
-                <div class="checkbox mb-3">
-                    <input type="checkbox" name="_remember_me" id="_remember_me">
-                    <label for="_remember_me">Remember me</label>
-                </div>
-            #}
+        <br>#}
 
-            {#<br>#}
-
-            <button id="button" class="btn btn-lg btn-primary" type="submit">
+        <button id="button" class="btn btn-lg btn-primary" type="submit">
                 Sign in
             </button>
 
-            <p>non hai ancora un account?<a class="registrationLink" href="{{ path('app_register') }}">clicca qui per registrarti</a></p>
+        <p>non hai ancora un account?<a class="registrationLink" href="{{ path('app_register') }}">clicca qui per registrarti</a></p>
 
-        </form>
-    </div>
+    </form>
+</div>
 
-    <footer>Prova footer</footer>
+<footer>Prova footer</footer>
 
-    <div id="overlay" onclick="closeSidebar()" aria-hidden="true"></div>
+<div id="overlay" onclick="closeSidebar()" aria-hidden="true"></div>
 
 {% endblock %}
-
