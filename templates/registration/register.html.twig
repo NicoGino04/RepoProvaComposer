@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %} {% block title %}Register{% endblock %} {% block stylesheets %}
 
 <script src="javascript/mainNavbar.js" defer></script>
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <link rel="stylesheet" href="css/registration.css"> {#
 <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">#} {% endblock %} {% block javascripts %} {{ parent() }}
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -32,13 +32,16 @@
     {{ form_row(registrationForm.email) }} {{ form_row(registrationForm.plainPassword) }}
 
     <input type="checkbox" id="chk">
+    <label for="chk"><i class="fa-regular fa-eye" id="eye"></i></label>
 
     <script>
         const passw = document.getElementById("registration_form_plainPassword");
         const chk = document.getElementById("chk");
+        const eye = document.getElementById("eye");
 
         chk.onchange = function show(e) {
             passw.type = chk.checked ? "text" : "password";
+            eye.className = chk.checked ? "fa-regular fa-eye-slash" : "fa-regular fa-eye";
         };
     </script>
 

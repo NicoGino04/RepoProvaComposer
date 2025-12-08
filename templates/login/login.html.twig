@@ -3,6 +3,7 @@
 <script src="javascript/mainNavbar.js" defer></script>
 {# il seguente script serve per gestire i popup moderni a schermo per errori e successi #}
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <link rel="stylesheet" href="css/login.css"> {% endblock %} {% block body %} {% for label, messages in app.flashes() %} {% for message in messages %}
 <script>
     Swal.fire({
@@ -43,14 +44,18 @@
         <input type="email" value="{{ last_username }}" name="_username" id="username" class="inputField" placeholder="Email" autocomplete="email" required autofocus> {#
         <label for="password">Password</label>#} {# Vecchia versione <input type="password" name="_password" id="password" class="form-control" autocomplete="current-password" required>#}
 
-        <input type="password" name="_password" id="password" class="inputField" placeholder="Password" autocomplete="current-password" required><input type="checkbox" id="chk">
+        <input type="password" name="_password" id="password" class="inputField" placeholder="Password" autocomplete="current-password" required>
+        <input type="checkbox" id="chk">
+        <label for="chk"><i class="fa-regular fa-eye" id="eye"></i></label>
 
         <script>
             const passw2 = document.getElementById("password");
             const chk2 = document.getElementById("chk");
+            const eye2 = document.getElementById("eye");
 
             chk2.onchange = function show(e) {
                 passw2.type = chk2.checked ? "text" : "password";
+                eye.className = chk2.checked ? "fa-regular fa-eye-slash" : "fa-regular fa-eye";
             };
         </script>
 

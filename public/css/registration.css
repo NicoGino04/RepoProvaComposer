@@ -38,6 +38,7 @@
 
 #navBar a:hover {
     background-color: #272832;
+    border-bottom: 2px solid #c9c9c9;
 }
 
 #navBar a.active_link {
@@ -254,6 +255,10 @@ id=button*/
     color: rgb(44, 24, 128);
     text-decoration: none;
     border-radius: 20px;
+}
+
+#chk {
+    display: none;
 }
 
 
